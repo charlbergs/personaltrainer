@@ -6,12 +6,15 @@ import Customerlist from './Customerlist';
 import Traininglist from './Traininglist';
 
 export default function TabApp() {
+    // state for setting the value (to switch tabs)
     const [value, setValue] = useState('home');
 
+    // clicking a tab changes the value
     const handleChange = (event, value) => {
         setValue(value)
     };
 
+    // a different component is rendered depending on which value is set
     return(
         <div>
             <Tabs value={value} onChange={handleChange}>

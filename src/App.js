@@ -2,8 +2,6 @@ import './App.css';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Customerlist from './components/Customerlist';
-import Traininglist from './components/Traininglist';
 import TabApp from './components/TabApp';
 
 function App() {
