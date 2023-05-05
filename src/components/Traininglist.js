@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import dayjs from 'dayjs';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Snackbar from '@mui/material/Snackbar';
+import CsvExport from './CsvExport';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
@@ -27,6 +28,8 @@ export default function Traininglist() {
         .catch(err => console.error(err));
     }
 
+    // ref for csv export
+    const gridRef = useRef();
     // ag-grid columns
     const [columnDefs] = useState([
         {field: 'date', sortable: true, filter: true, filter: 'agDateColumnFilter', 
@@ -34,8 +37,12 @@ export default function Traininglist() {
         },
         {field: 'activity', sortable: true, filter: true},
         {field: 'duration', headerName: 'Duration (mins)', sortable: true, filter: true},
-        {field: 'customer', valueGetter(params) {
-                return `${params.data.customer.firstname} ${params.data.customer.lastname}`; // connect first and last name into one column
+        {field: 'customer', valueGetter: params => { // connect first and last name into one column
+                if (params.data.customer != null) {
+                    return `${params.data.customer.firstname} ${params.data.customer.lastname}`;
+                } else {
+                    return 'null'; // if the training does not have a customer, column shows 'null'
+                }
             }, sortable: true, filter: true},
         {cellRenderer: params => 
             <Button startIcon={<DeleteIcon/>} variant='outlined' size='small' color='error' onClick={() => deleteTraining(params)}>
@@ -64,10 +71,20 @@ export default function Traininglist() {
         }
     }
 
+    // parameters for the exported csv file
+    const exportParams = {
+        fileName: 'Trainings.csv',
+        columnKeys: ['date', 'activity', 'duration', 'customer'] // to skip empty columns (buttons)
+    };
+
     return(
         <div>
+            <div className='control-panel'>
+                <CsvExport gridRef={gridRef} exportParams={exportParams}/>
+            </div>
             <div className='ag-theme-material' style={{height: 600, width: '63%', margin: 'auto'}}>
                 <AgGridReact 
+                    ref={gridRef}
                     rowData={trainings} 
                     columnDefs={columnDefs}
                     pagination={true}

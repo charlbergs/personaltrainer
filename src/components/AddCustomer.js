@@ -53,7 +53,7 @@ export default function AddCustomer(props) { // props: addCustomer
 
     return(
         <div>
-            <Button startIcon={<AddIcon/>} variant="outlined" onClick={handleClickOpen}>
+            <Button startIcon={<AddIcon/>} variant='outlined' style={{margin: '5px'}} onClick={handleClickOpen}>
                 Add Customer
             </Button>
             <Dialog open={open} onClose={handleClose}>

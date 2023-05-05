@@ -56,18 +56,18 @@ export default function AddTraining(props) { // props: addTraining & row data (p
                     </LocalizationProvider>
                     <TextField
                         margin="dense"
-                        label="Duration (mins)"
-                        value={training.duration}
-                        type="number"
-                        onChange={(event) => setTraining({...training, duration: event.target.value})}
+                        label="Activity"
+                        value={training.activity}
+                        onChange={(event) => setTraining({...training, activity: event.target.value})}
                         fullWidth
                         variant="standard"
                     />
                     <TextField
                         margin="dense"
-                        label="Activity"
-                        value={training.activity}
-                        onChange={(event) => setTraining({...training, activity: event.target.value})}
+                        label="Duration (mins)"
+                        value={training.duration}
+                        type="number"
+                        onChange={(event) => setTraining({...training, duration: event.target.value})}
                         fullWidth
                         variant="standard"
                     />

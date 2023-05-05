@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -6,6 +6,7 @@ import Snackbar from '@mui/material/Snackbar';
 import AddCustomer from './AddCustomer';
 import EditCustomer from './EditCustomer';
 import AddTraining from './AddTraining';
+import CsvExport from './CsvExport';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
@@ -29,6 +30,8 @@ export default function Customerlist() {
         .catch(err => console.error(err));
     }
 
+    // ref for csv export
+    const gridRef = useRef();
     // ag-grid columns
     const [columnDefs] = useState([
         {field: 'firstname', headerName: 'First Name', sortable: true, filter: true, width: 130},
@@ -129,11 +132,21 @@ export default function Customerlist() {
         .catch(err => console.error(err));
     };
 
+    // parameters for the exported csv file
+    const exportParams = {
+        fileName: 'Customers.csv',
+        columnKeys: ['firstname', 'lastname', 'streetaddress', 'postcode', 'city', 'email', 'phone'] // to skip empty columns (buttons)
+    };
+
     return(
         <div>
-            <AddCustomer addCustomer={addCustomer}/>
+            <div className='control-panel'>
+                <AddCustomer addCustomer={addCustomer}/>
+                <CsvExport gridRef={gridRef} exportParams={exportParams}/>
+            </div>
             <div className='ag-theme-material' style={{height: 600, width: '91%', margin: 'auto'}}>
                 <AgGridReact 
+                    ref={gridRef}
                     rowData={customers} 
                     columnDefs={columnDefs}
                     pagination={true}

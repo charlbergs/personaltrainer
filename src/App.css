@@ -16,3 +16,21 @@
 .App-link {
   color: #61dafb;
 }
+
+.control-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.big-calendar {
+  height: 600px;
+}
+
+.rbc-event-label {
+  font-size: 12px;
+}
+
+.rbc-event-content {
+  font-size: 12px;
+}
