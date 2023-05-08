@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
@@ -10,6 +10,17 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function EditCustomer(props) { // props: updateCustomer & row data (params.data)
     // state for customer
     const [customer, setCustomer] = useState({
+        firstname: '',
+        lastname: '',
+        streetaddress: '',
+        postcode: '',
+        city: '',
+        email: '',
+        phone: ''
+    });
+
+    // clears the customer form (after saving or cancelling)
+    const clearCustomer = () => setCustomer({
         firstname: '',
         lastname: '',
         streetaddress: '',
@@ -40,32 +51,17 @@ export default function EditCustomer(props) { // props: updateCustomer & row dat
     const handleClose = () => {
         setOpen(false);
         // clear the customer state
-        setCustomer({
-            firstname: '',
-            lastname: '',
-            streetaddress: '',
-            postcode: '',
-            city: '',
-            email: '',
-            phone: ''
-        });
+        clearCustomer();
     };
 
     // clicking save on dialog
     const handleSave = () => {
         props.updateCustomer(props.params.links[0].href, customer);
         setOpen(false);
-        setCustomer({
-            firstname: '',
-            lastname: '',
-            streetaddress: '',
-            postcode: '',
-            city: '',
-            email: '',
-            phone: ''
-        });
+        clearCustomer();
     };
 
+    // returns the edit button and the edit customer form
     return(
         <div>
             <Button startIcon={<EditIcon/>} variant='outlined' size='small' color='secondary' onClick={handleClickOpen}>
@@ -75,60 +71,60 @@ export default function EditCustomer(props) { // props: updateCustomer & row dat
                 <DialogTitle>Edit Customer</DialogTitle>
                 <DialogContent>
                     <TextField
-                        margin="dense"
-                        label="First name"
+                        margin='dense'
+                        label='First name'
                         value={customer.firstname}
                         onChange={(event) => setCustomer({...customer, firstname: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Last name"
+                        margin='dense'
+                        label='Last name'
                         value={customer.lastname}
                         onChange={(event) => setCustomer({...customer, lastname: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Street address"
+                        margin='dense'
+                        label='Street address'
                         value={customer.streetaddress}
                         onChange={(event) => setCustomer({...customer, streetaddress: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Postal code"
+                        margin='dense'
+                        label='Postal code'
                         value={customer.postcode}
                         onChange={(event) => setCustomer({...customer, postcode: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="City"
+                        margin='dense'
+                        label='City'
                         value={customer.city}
                         onChange={(event) => setCustomer({...customer, city: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Email"
+                        margin='dense'
+                        label='Email'
                         value={customer.email}
                         onChange={(event) => setCustomer({...customer, email: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Phone number"
+                        margin='dense'
+                        label='Phone number'
                         value={customer.phone}
                         onChange={(event) => setCustomer({...customer, phone: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                 </DialogContent>
                 <DialogActions>

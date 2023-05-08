@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import TextField from '@mui/material/TextField';
@@ -51,6 +51,7 @@ export default function AddCustomer(props) { // props: addCustomer
         clearCustomer();
     };
 
+    // returns the add button and the new customer form
     return(
         <div>
             <Button startIcon={<AddIcon/>} variant='outlined' style={{margin: '5px'}} onClick={handleClickOpen}>
@@ -60,60 +61,60 @@ export default function AddCustomer(props) { // props: addCustomer
                 <DialogTitle>New Customer</DialogTitle>
                 <DialogContent>
                     <TextField
-                        margin="dense"
-                        label="First name"
+                        margin='dense'
+                        label='First name'
                         value={customer.firstname}
                         onChange={(event) => setCustomer({...customer, firstname: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Last name"
+                        margin='dense'
+                        label='Last name'
                         value={customer.lastname}
                         onChange={(event) => setCustomer({...customer, lastname: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Street address"
+                        margin='dense'
+                        label='Street address'
                         value={customer.streetaddress}
                         onChange={(event) => setCustomer({...customer, streetaddress: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Postal code"
+                        margin='dense'
+                        label='Postal code'
                         value={customer.postcode}
                         onChange={(event) => setCustomer({...customer, postcode: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="City"
+                        margin='dense'
+                        label='City'
                         value={customer.city}
                         onChange={(event) => setCustomer({...customer, city: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Email"
+                        margin='dense'
+                        label='Email'
                         value={customer.email}
                         onChange={(event) => setCustomer({...customer, email: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                     <TextField
-                        margin="dense"
-                        label="Phone number"
+                        margin='dense'
+                        label='Phone number'
                         value={customer.phone}
                         onChange={(event) => setCustomer({...customer, phone: event.target.value})}
                         fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                 </DialogContent>
                 <DialogActions>

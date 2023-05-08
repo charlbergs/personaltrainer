@@ -38,6 +38,7 @@ export default function AddTraining(props) { // props: addTraining & row data (p
         setOpen(false);
     };
 
+    // returns the add training button and the new training form
     return(
         <div>
             <Button startIcon={<AddIcon/>} variant="outlined" size='small' onClick={handleClickOpen}>
@@ -55,21 +56,21 @@ export default function AddTraining(props) { // props: addTraining & row data (p
                         />
                     </LocalizationProvider>
                     <TextField
-                        margin="dense"
-                        label="Activity"
+                        margin='dense'
+                        label='Duration (mins)'
+                        value={training.duration}
+                        type='number'
+                        onChange={(event) => setTraining({...training, duration: event.target.value})}
+                        fullWidth
+                        variant='standard'
+                    />
+                    <TextField
+                        margin='dense'
+                        label='Activity'
                         value={training.activity}
                         onChange={(event) => setTraining({...training, activity: event.target.value})}
                         fullWidth
-                        variant="standard"
-                    />
-                    <TextField
-                        margin="dense"
-                        label="Duration (mins)"
-                        value={training.duration}
-                        type="number"
-                        onChange={(event) => setTraining({...training, duration: event.target.value})}
-                        fullWidth
-                        variant="standard"
+                        variant='standard'
                     />
                 </DialogContent>
                 <DialogActions>

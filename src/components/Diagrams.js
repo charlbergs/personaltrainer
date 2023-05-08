@@ -27,6 +27,7 @@ export default function Diagrams() {
             minutes: _.sumBy(training, 'duration')
         })).value()
 
+    // returns the bar chart and pie chart with training data
     return(
         <div className='diagrams'>
             <div>

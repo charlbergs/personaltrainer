@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -138,6 +138,7 @@ export default function Customerlist() {
         columnKeys: ['firstname', 'lastname', 'streetaddress', 'postcode', 'city', 'email', 'phone'] // to skip empty columns (buttons)
     };
 
+    // returns the add and download buttons and the ag-grid with customer data
     return(
         <div>
             <div className='control-panel'>

@@ -77,6 +77,7 @@ export default function Traininglist() {
         columnKeys: ['date', 'activity', 'duration', 'customer'] // to skip empty columns (buttons)
     };
 
+    // returns the download button and the ag-grid with training data
     return(
         <div>
             <div className='control-panel'>
