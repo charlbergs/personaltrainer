@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { Calendar, dayjsLocalizer } from 'react-big-calendar';
+import { API_URL_getTrainings } from '../constants';
+
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 export default function TrainingsCalendar() {
@@ -15,7 +17,7 @@ export default function TrainingsCalendar() {
 
     // fetch all trainings
     const getTrainings = () => {
-        fetch('http://traineeapp.azurewebsites.net/gettrainings')
+        fetch(API_URL_getTrainings)
         .then(response => response.json())
         .then(data => setTrainings(data))
         .catch(err => console.error(err));

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BarChart, XAxis, YAxis, Tooltip, Bar, PieChart, Pie } from 'recharts';
 import _ from 'lodash';
+import { API_URL_getTrainings } from '../constants';
 
 export default function Diagrams() {
     // state for trainings
@@ -13,7 +14,7 @@ export default function Diagrams() {
 
     // fetch all trainings
     const getTrainings = () => {
-        fetch('http://traineeapp.azurewebsites.net/gettrainings')
+        fetch(API_URL_getTrainings)
         .then(response => response.json())
         .then(data => setTrainings(data))
         .catch(err => console.error(err));

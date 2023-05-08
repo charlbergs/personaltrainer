@@ -7,6 +7,7 @@ import AddCustomer from './AddCustomer';
 import EditCustomer from './EditCustomer';
 import AddTraining from './AddTraining';
 import CsvExport from './CsvExport';
+import { API_URL_customers } from '../constants';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
@@ -24,7 +25,7 @@ export default function Customerlist() {
 
     // fetch all customers
     const getCustomers = () => {
-        fetch('http://traineeapp.azurewebsites.net/api/customers')
+        fetch(API_URL_customers)
         .then(response => response.json())
         .then(data => setCustomers(data.content))
         .catch(err => console.error(err));
@@ -59,7 +60,7 @@ export default function Customerlist() {
 
     // add new customer
     const addCustomer = (customer) => {
-        fetch('http://traineeapp.azurewebsites.net/api/customers', { 
+        fetch(API_URL_customers, { 
             method: 'POST',
             headers: {'Content-type':'application/json'},
             body: JSON.stringify(customer)
@@ -116,7 +117,7 @@ export default function Customerlist() {
 
     // add training
     const addTraining = (training) => {
-        fetch('http://traineeapp.azurewebsites.net/api/trainings', { 
+        fetch('https://traineeapp.azurewebsites.net/api/trainings', { 
             method: 'POST',
             headers: {'Content-type':'application/json'},
             body: JSON.stringify(training)

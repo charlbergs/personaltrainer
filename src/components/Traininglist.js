@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Snackbar from '@mui/material/Snackbar';
 import CsvExport from './CsvExport';
+import { API_URL_getTrainings } from '../constants';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
@@ -22,7 +23,7 @@ export default function Traininglist() {
 
     // fetch all trainings
     const getTrainings = () => {
-        fetch('http://traineeapp.azurewebsites.net/gettrainings')
+        fetch(API_URL_getTrainings)
         .then(response => response.json())
         .then(data => setTrainings(data))
         .catch(err => console.error(err));
@@ -55,7 +56,7 @@ export default function Traininglist() {
     // delete training
     const deleteTraining = (params) => {
         if (window.confirm('Are you sure you want to delete this training?')) {
-            fetch(`http://traineeapp.azurewebsites.net/api/trainings/${params.data.id}`,
+            fetch(`https://traineeapp.azurewebsites.net/api/trainings/${params.data.id}`,
                 {method: 'DELETE'}
             )
             .then(response => {
